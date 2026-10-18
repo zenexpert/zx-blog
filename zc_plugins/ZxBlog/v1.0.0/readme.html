@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZX Blog - Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f9f9f9;
+        }
+
+        main {
+            background-color: #fff;
+            padding: 2rem 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            position: relative;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5em;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5em;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f5f7fa;
+            font-weight: 600;
+        }
+
+        blockquote {
+            border-left: 4px solid #3498db;
+            margin: 1.5em 0;
+            padding: 0.5em 1em;
+            background-color: #f4f8fa;
+            color: #555;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #27ae60;
+            border-radius: 12px;
+        }
+
+        .back-to-top {
+            font-size: 14px;
+            font-weight: normal;
+            float: right;
+            text-decoration: none;
+            color: #3498db;
+            margin-top: 6px;
+        }
+
+        .back-to-top:hover {
+            text-decoration: underline;
+        }
+
+        .meta-header {
+            display: flex;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 1.5em 0;
+        }
+
+        .meta-left {
+            flex: 0 0 35%;
+            padding: 15px;
+            border-right: 1px solid #ddd;
+        }
+
+        .meta-right {
+            flex: 1;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .meta-header {
+                flex-direction: column;
+            }
+            .meta-left {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<main id="top">
+    <h1>ZX Blog</h1>
+
+    <div class="meta-header">
+        <div class="meta-left">
+            <strong>Version:</strong> 1.0.0<br>
+            <strong>Release Date:</strong> October 18, 2026<br>
+            <strong>Platform:</strong> Zen Cart 2.1.0+<br>
+            <strong>Architecture:</strong> Encapsulated Plugin (<code>zc_plugins</code>)<br>
+            <strong>Author:</strong> Leonard, ZenExpert<br>
+            <strong>Contact:</strong> <a href="mailto:info@zenexpert.com">e-mail me</a> (considered as quote requests)
+        </div>
+        <div class="meta-right">
+            Thank you for downloading this plugin. Please note that this plugin is installed and used at your own risk. If you are unsure of how to complete the installation procedure documented below, please seek support in the official Forum section (keep in mind Forums are public and work on voluntary basis) or contact me for paid assistance. ZenExpert takes no responsibility for problems related to the installation or use of this plugin.
+        </div>
+    </div>
+
+    <p>ZX Blog is a full-featured, multi-language content management and blogging suite built exclusively for Zen Cart 2.1.0 and newer. Engineered as a strict <strong>Encapsulated Plugin</strong>, it provides categories, tags, author avatar management, automatic monthly media folder partitioning (<code>images/blog/{yyyymm}/</code>), scheduled publishing, related store product linking, storefront sideboxes, and a one-click WordPress database and media migration tool with zero core file modifications.</p>
+
+    <h2>Table of Contents</h2>
+    <ul>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#features-usage">Features &amp; Usage</a>
+            <ul>
+                <li><a href="#configuration">Global Configuration Settings</a></li>
+                <li><a href="#posts-manager">Blog Posts Manager &amp; HTML Editor</a></li>
+                <li><a href="#scheduled-publishing">Scheduled Publishing &amp; Pinned Posts</a></li>
+                <li><a href="#categories-manager">Categories Management</a></li>
+                <li><a href="#avatars-manager">Author Avatars Manager (<code>images/blog/assets/</code>)</a></li>
+                <li><a href="#media-uploader">Monthly Content Image Partitioning (<code>images/blog/{yyyymm}/</code>)</a></li>
+                <li><a href="#sideboxes">Storefront Sideboxes &amp; Layout Boxes Controller</a></li>
+                <li><a href="#storefront-features">Storefront Features, SEO &amp; Security</a></li>
+                <li><a href="#wordpress-import">WordPress Database &amp; Media Migration Tool</a></li>
+            </ul>
+        </li>
+        <li><a href="#uninstallation">Uninstallation</a></li>
+        <li><a href="#common-issues">Common Issues</a></li>
+        <li><a href="#sources-credits">Sources and Credits</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#license">License</a></li>
+    </ul>
+
+    <h2 id="installation">Installation <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>ZX Blog is built as a strict <strong>Encapsulated Plugin</strong> for Zen Cart 2.1.0+. All admin pages, storefront controllers, sideboxes, language arrays, and installers live inside <code>zc_plugins/ZxBlog/v1.0.0/</code>, requiring zero core file overwrites.</p>
+    <ol>
+        <li>Backup your Zen Cart database and store files.</li>
+        <li>Upload the <code>ZxBlog</code> directory into your store's <code>zc_plugins/</code> directory so that the path matches <code>zc_plugins/ZxBlog/v1.0.0/manifest.php</code>.</li>
+        <li>Log into your Zen Cart Admin panel and navigate to <strong>Modules &gt; Plugin Manager</strong>.</li>
+        <li>Locate <strong>ZX Blog</strong> in the list and click <strong>Install</strong>. The scripted installer will automatically:
+            <ul>
+                <li>Create the image directories <code>images/blog/</code>, <code>images/blog/assets/</code>, and the current month directory <code>images/blog/YYYYMM/</code>.</li>
+                <li>Create the nine required database tables:
+                    <code>zx_blog_posts</code>, <code>zx_blog_posts_description</code>, <code>zx_blog_categories</code>, <code>zx_blog_categories_description</code>, <code>zx_blog_avatars</code>, <code>zx_blog_posts_to_categories</code>, <code>zx_blog_tags</code>, <code>zx_blog_posts_to_tags</code>, and <code>zx_blog_posts_to_products</code>.</li>
+                <li>Register the configuration group under <strong>Configuration &gt; ZX Blog Configuration</strong>.</li>
+                <li>Register the main management interface under <strong>Tools &gt; ZX Blog Manager</strong>.</li>
+                <li>Register the WordPress migration utility under <strong>Extras &gt; ZX Blog WordPress Import</strong>.</li>
+                <li>Register all three storefront sideboxes (<code>blog_categories.php</code>, <code>blog_recent_posts.php</code>, <code>blog_tags.php</code>) in <code>layout_boxes</code> with encapsulated <code>plugin_details</code>.</li>
+            </ul>
+        </li>
+        <li>Navigate to <strong>Tools &gt; Layout Boxes Controller</strong> to adjust the left/right column placement and sort order of the three new blog sideboxes for your active template.</li>
+        <li>Access your storefront blog at <code>index.php?main_page=blog</code>.</li>
+    </ol>
+
+    <h2 id="features-usage">Features &amp; Usage <a href="#top" class="back-to-top">&uarr; top</a></h2>
+
+    <h3 id="configuration">Global Configuration Settings</h3>
+    <p>Navigate to <strong>Configuration &gt; ZX Blog Configuration</strong> to control global storefront behavior:</p>
+    <table>
+        <thead>
+        <tr>
+            <th>Configuration Title</th>
+            <th>Key</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Enable ZX Blog</td>
+            <td><code>ZX_BLOG_STATUS</code></td>
+            <td><code>true</code></td>
+            <td>Master switch for the storefront blog page and all three blog sideboxes.</td>
+        </tr>
+        <tr>
+            <td>Posts Per Page</td>
+            <td><code>ZX_BLOG_POSTS_PER_PAGE</code></td>
+            <td><code>6</code></td>
+            <td>Number of articles displayed per page on main blog, category, tag, and search listings.</td>
+        </tr>
+        <tr>
+            <td>Sidebox: Recent Posts Limit</td>
+            <td><code>ZX_BLOG_RECENT_SIDEBOX_LIMIT</code></td>
+            <td><code>5</code></td>
+            <td>Maximum number of recent articles displayed in the Recent Blog Posts sidebox.</td>
+        </tr>
+        <tr>
+            <td>Sidebox: Tags Limit</td>
+            <td><code>ZX_BLOG_TAGS_SIDEBOX_LIMIT</code></td>
+            <td><code>20</code></td>
+            <td>Maximum number of popular tags displayed in the Blog Tags sidebox cloud.</td>
+        </tr>
+        <tr>
+            <td>Display Estimated Reading Time</td>
+            <td><code>ZX_BLOG_SHOW_READING_TIME</code></td>
+            <td><code>true</code></td>
+            <td>Automatically calculates and displays estimated reading time (at 200 words per minute) on listing cards and single articles.</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3 id="posts-manager">Blog Posts Manager &amp; HTML Editor</h3>
+    <p>Navigate to <strong>Tools &gt; ZX Blog Manager</strong> and select the <strong>Posts</strong> tab to create, edit, toggle status, or delete blog articles.</p>
+    <ul>
+        <li><strong>HTML Editor Integration:</strong> The top-right corner of the Blog Manager includes Zen Cart's native <strong>Text Editor</strong> selector dropdown. Selecting CKEditor or TinyMCE automatically hooks into the <code>.editorHook</code> Post Content textarea across all installed store languages.</li>
+        <li><strong>Multi-Language Support:</strong> Post Title, URL Slug, Excerpt/Summary, Post Content, Tags, SEO Meta Title, and SEO Meta Description are stored per language in <code>zx_blog_posts_description</code> and <code>zx_blog_tags</code>.</li>
+        <li><strong>Related Store Products:</strong> Enter comma-separated Zen Cart Product IDs (e.g., <code>12,45,89</code>) in the <strong>Related Product IDs</strong> field. Active store products linked here automatically render in a shoppable product grid at the bottom of the blog post.</li>
+        <li><strong>SEO Meta Tags &amp; URL Slugs:</strong> Each post supports custom <code>META_TAG_TITLE</code> and <code>META_TAG_DESCRIPTION</code> overrides. If the URL Slug is left blank, it is automatically generated from the Post Title.</li>
+    </ul>
+
+    <h3 id="scheduled-publishing">Scheduled Publishing &amp; Pinned Posts</h3>
+    <p>ZX Blog supports native scheduled publishing without requiring a server cron job:</p>
+    <ul>
+        <li><strong>Immediate Publishing:</strong> Leave the <strong>Publish Date</strong> field blank and set <strong>Status</strong> to <em>Enabled</em>. The post goes live immediately using its creation timestamp.</li>
+        <li><strong>Scheduled Future Publishing:</strong> Set <strong>Status</strong> to <em>Enabled</em> and select a future date and time in the <strong>Publish Date</strong> picker. In the Admin Posts table, the post will display a yellow status icon with a <span class="badge" style="background-color:#f0ad4e;">Scheduled</span> badge.</li>
+        <li><strong>Real-Time Trigger:</strong> Storefront queries evaluate <code>(p.date_scheduled IS NULL OR p.date_scheduled &lt;= NOW())</code> on every request. The exact second the server clock reaches the scheduled timestamp, the article automatically appears on the blog listing, single post page, and sideboxes.</li>
+        <li><strong>Pin to Top:</strong> Checking <strong>Pin to Top</strong> marks the post as <em>Featured</em> and forces it to the top of storefront listings ahead of chronological posts.</li>
+    </ul>
+
+    <h3 id="categories-manager">Categories Management</h3>
+    <p>Open the <strong>Categories</strong> tab inside <strong>Tools &gt; ZX Blog Manager</strong> to organize your articles into topic hubs:</p>
+    <ul>
+        <li>Create unlimited blog categories with custom sort orders, enable/disable toggles, localized names, URL slugs, and rich HTML category descriptions.</li>
+        <li>Posts can be assigned to multiple categories simultaneously via checkboxes on the Post edit screen.</li>
+        <li>When a visitor filters the blog by category (<code>index.php?main_page=blog&amp;bPath=X</code>), the category's title and description are rendered at the top of the listing and added to the breadcrumb trail.</li>
+    </ul>
+
+    <h3 id="avatars-manager">Author Avatars Manager (<code>images/blog/assets/</code>)</h3>
+    <p>Open the <strong>Author Avatars</strong> tab inside <strong>Tools &gt; ZX Blog Manager</strong> to manage blog authors and their profile images:</p>
+    <ul>
+        <li><strong>Dedicated Asset Storage:</strong> All author avatar images are uploaded directly to <code>images/blog/assets/</code>.</li>
+        <li><strong>Full Lifecycle Management:</strong> Create author profiles with an Author Name, Short Bio, and Avatar Image. Replacing an avatar or deleting an author profile automatically removes the old image file from <code>images/blog/assets/</code> and safely resets any linked posts to <code>avatar_id = 0</code>.</li>
+    </ul>
+
+    <h3 id="media-uploader">Monthly Content Image Partitioning (<code>images/blog/{yyyymm}/</code>)</h3>
+    <p>To prevent a single image folder from accumulating thousands of unorganized files over time, ZX Blog automatically partitions all post media by year and month (<code>YYYYMM</code>, such as <code>images/blog/202610/</code>):</p>
+    <ul>
+        <li><strong>Featured Images:</strong> Uploaded directly from the Post edit screen into <code>images/blog/{yyyymm}/</code>. Checking <em>Remove current featured image</em> or deleting a post removes the physical file from the server.</li>
+        <li><strong>Inline Content Image Uploader Tab:</strong> Open the <strong>Content Image Uploader</strong> tab in <strong>Tools &gt; ZX Blog Manager</strong> to upload inline images directly to the current month's folder (<code>images/blog/{yyyymm}/</code>) and copy the ready-to-use relative path (<code>images/blog/202610/your-image.jpg</code>) into CKEditor, TinyMCE, or Plain Text HTML.</li>
+    </ul>
+
+    <h3 id="sideboxes">Storefront Sideboxes &amp; Layout Boxes Controller</h3>
+    <p>ZX Blog includes three encapsulated sidebox modules located in <code>catalog/includes/modules/sideboxes/</code>:</p>
+    <ul>
+        <li><strong>Blog Categories (<code>blog_categories.php</code>):</strong> Lists all active blog categories along with a live count of published posts in each category.</li>
+        <li><strong>Recent Blog Posts (<code>blog_recent_posts.php</code>):</strong> Displays the latest published articles with publication dates.</li>
+        <li><strong>Blog Tags (<code>blog_tags.php</code>):</strong> Renders a tag cloud ordered by tag frequency, linking to <code>index.php?main_page=blog&amp;tag=slug</code>.</li>
+    </ul>
+    <blockquote>
+        <strong>Managing Sidebox Position:</strong> Navigate to <strong>Tools &gt; Layout Boxes Controller</strong> in your Zen Cart Admin to enable/disable each sidebox, assign it to the Left or Right column, and set its sort order.
+    </blockquote>
+
+    <h3 id="storefront-features">Storefront Features, SEO &amp; Security</h3>
+    <ul>
+        <li><strong>Schema.org Structured Data:</strong> Single blog posts automatically output <code>https://schema.org/BlogPosting</code> microdata (<code>headline</code>, <code>author</code>, <code>datePublished</code>, <code>image</code>, and <code>articleBody</code>) and set a clean canonical URL via Zen Cart's <code>$canonicalLink</code>.</li>
+        <li><strong>Hardened Frontend Search &amp; Filtering:</strong> Visitors can search articles by keyword (<code>bsearch</code>), filter by category (<code>bPath</code>), or filter by tag (<code>tag</code>). Search inputs are stripped of HTML/control characters, capped at 100 characters, escaped against SQL <code>LIKE</code> wildcard DoS attacks (<code>%</code> and <code>_</code>), and bound via Zen Cart's <code>$db-&gt;bindVars(..., 'string')</code>.</li>
+        <li><strong>Admin Request Sanitizer Integration:</strong> Registers complex sanitization rules at autoloader breakpoint <code>68</code> (before Zen Cart's <code>init_sanitize.php</code> runs at breakpoint <code>70</code>) so rich HTML in <code>post_content</code>, <code>post_summary</code>, and <code>category_description</code> is preserved safely.</li>
+    </ul>
+
+    <h3 id="wordpress-import">WordPress Database &amp; Media Migration Tool</h3>
+    <p>Navigate to <strong>Extras &gt; ZX Blog WordPress Import</strong> (<code>admin/blog_wp_import.php</code>) to migrate an existing WordPress blog into Zen Cart.</p>
+    <ol>
+        <li>Enter your WordPress MySQL database credentials (<strong>DB Host</strong>, <strong>Database Name</strong>, <strong>Username</strong>, <strong>Password</strong>, and <strong>Table Prefix</strong> such as <code>wp_</code>).</li>
+        <li><em>Optional:</em> Enter the <strong>Local WordPress Filesystem Path</strong> (e.g., <code>/home/user/public_html/wp</code> or <code>/var/www/html/wp-content/uploads</code>). If left blank, the importer automatically reads <code>siteurl</code> from WordPress's <code>options</code> table and downloads images via cURL fallback.</li>
+        <li>Click <strong>Test Connection &amp; Preview Counts</strong> to verify connectivity and preview the exact number of posts, categories, tags, and authors found before making any changes.</li>
+        <li>Click <strong>Run WordPress Import Now</strong> to execute the migration.</li>
+    </ol>
+    <p><strong>What the WordPress Importer Transfers:</strong></p>
+    <ul>
+        <li><strong>Authors &amp; Avatars:</strong> Imports WordPress users who have authored posts into <code>zx_blog_avatars</code>, including their biography (<code>description</code> meta) and local avatar or optional Gravatar image into <code>images/blog/assets/</code>.</li>
+        <li><strong>Categories &amp; Tags:</strong> Imports all WordPress categories and post tags (with decoded slugs and descriptions) and maps all post-to-term relationships.</li>
+        <li><strong>Posts, Sticky Status &amp; Scheduled Dates:</strong> Imports published, future-scheduled, and (optionally) draft/private posts. WordPress <code>sticky_posts</code> are automatically marked as <strong>Pinned</strong> (<code>is_pinned = 1</code>).</li>
+        <li><strong>Featured &amp; Inline Content Images:</strong> Copies physical image files from WordPress's <code>wp-content/uploads/YYYY/MM/</code> directory into <code>images/blog/YYYYMM/</code>, rewrites inline <code>&lt;img src="..."&gt;</code> paths inside <code>post_content</code> to <code>images/blog/YYYYMM/filename.ext</code>, and strips legacy WordPress <code>srcset</code> and <code>sizes</code> attributes so images never 404 after WordPress is removed.</li>
+        <li><strong>SEO Metadata &amp; View Counts:</strong> Automatically migrates custom SEO titles and meta descriptions from <strong>Yoast SEO</strong>, <strong>Rank Math</strong>, or <strong>All in One SEO</strong>, as well as post view counts.</li>
+        <li><strong>Idempotent Safe Re-Runs:</strong> Posts, categories, tags, and authors are matched by slug/name. Re-running the importer updates existing records rather than creating duplicates.</li>
+    </ul>
+
+    <h2 id="uninstallation">Uninstallation <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>To uninstall the plugin, navigate to <strong>Modules &gt; Plugin Manager</strong>, select <strong>ZX Blog</strong>, and click <strong>Uninstall</strong>. The uninstaller deregisters the Admin menu pages and removes the sidebox entries from <code>layout_boxes</code> while leaving your blog database tables and uploaded images in <code>images/blog/</code> intact so you never accidentally lose articles during a plugin upgrade.</p>
+
+    <h2 id="common-issues">Common Issues <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <ul>
+        <li><strong>Sideboxes listed under "Missing Boxes" in Layout Boxes Controller:</strong> If you installed an earlier build where <code>plugin_details</code> was not populated in <code>layout_boxes</code>, click <strong>Delete</strong> next to the three blog sideboxes in <strong>Tools &gt; Layout Boxes Controller</strong>. Zen Cart's <code>SideboxFinder</code> will immediately re-register them with <code>plugin_details = 'ZxBlog/v1.0.0'</code>.</li>
+        <li><strong>HTML Editor (CKEditor / TinyMCE) not showing on Post Content:</strong> Use the <strong>Text Editor</strong> dropdown in the top-right corner of <strong>Tools &gt; ZX Blog Manager</strong> (or under <strong>Configuration &gt; My Store &gt; HTML Editor</strong>) to switch from <em>Plain Text</em> to your installed editor.</li>
+        <li><strong>Image uploads failing:</strong> Verify that your web server has write permissions (<code>0755</code> or <code>0775</code>) on the <code>images/</code> directory so PHP can create <code>images/blog/assets/</code> and monthly <code>images/blog/YYYYMM/</code> subdirectories.</li>
+    </ul>
+
+    <h2 id="sources-credits">Sources and Credits <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>External libraries used in this plugin: none</p>
+    <p>If you find this module useful, <a href="https://zenexpert.com/shop/donations/donation" target="_blank"><strong>please consider donating via PayPal</strong></a> to ensure this module is supported and improved ($10 - $30 recommended).</p>
+
+    <h2 id="support">Support <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>This plugin comes with limited support. There is an official support thread on the public Forum, but keep in mind that support is on voluntary basis so you might have to wait a while before your question gets answered.</p>
+    <p>Please note that I don't provide support for this module via email for free. Any private support is considered commercial work and will be billed at my standard hourly rate.</p>
+    <p>One question that is often asked - "will the plugin work with a new (future) version of Zen Cart?". Well, give me a minute to pull out my magic crystal ball and see what the future brings... There is no way to guarantee future compatibility, but I'll do my best to keep it compatible with future versions of Zen Cart.</p>
+
+    <h2 id="license">License <a href="#top" class="back-to-top">&uarr; top</a></h2>
+    <p>The plugin is licensed under GPL v2.0.</p>
+
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 2rem 0;">
+    <p>Once again, thank you for downloading this file. As I said at the beginning, I'd be glad to help you if you have any questions relating to this plugin. No guarantees, but I'll do my best to assist.</p>
+
+    <p>Regards,<br>Leonard</p>
+
+</main>
+
+</body>
+</html>
