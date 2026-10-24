@@ -58,7 +58,9 @@ switch ($action) {
     case 'setflag_post':
         $postId = (int)($_GET['pID'] ?? 0);
         $flag = ((int)($_GET['flag'] ?? 0) === 1) ? 1 : 0;
-        if ($postId > 0) {
+        $token = (string)($_GET['securityToken'] ?? '');
+        $sessionToken = (string)($_SESSION['securityToken'] ?? '');
+        if ($postId > 0 && $sessionToken !== '' && hash_equals($sessionToken, $token)) {
             $db->Execute(
                 "UPDATE " . TABLE_ZX_BLOG_POSTS . "
                  SET status = " . $flag . ", last_modified = NOW()
@@ -690,14 +692,14 @@ switch ($action) {
                             <td><?php echo ((int)$row['is_pinned'] === 1) ? TEXT_YES : TEXT_NO; ?></td>
                             <td>
                                 <?php if ((int)$row['status'] === 1) { ?>
-                                    <a href="<?php echo zen_href_link(FILENAME_ZX_BLOG, 'tab=posts&action=setflag_post&flag=0&pID=' . (int)$row['post_id']); ?>">
+                                    <a href="<?php echo zen_href_link(FILENAME_ZX_BLOG, 'tab=posts&action=setflag_post&flag=0&pID=' . (int)$row['post_id'] . '&securityToken=' . $_SESSION['securityToken']); ?>">
                                         <?php echo $isFutureScheduled ? zen_icon('status-yellow') : zen_icon('status-green'); ?>
                                     </a>
                                     <?php if ($isFutureScheduled) { ?>
                                         <span class="label label-warning"><?php echo TEXT_SCHEDULED_BADGE; ?></span>
                                     <?php } ?>
                                 <?php } else { ?>
-                                    <a href="<?php echo zen_href_link(FILENAME_ZX_BLOG, 'tab=posts&action=setflag_post&flag=1&pID=' . (int)$row['post_id']); ?>">
+                                    <a href="<?php echo zen_href_link(FILENAME_ZX_BLOG, 'tab=posts&action=setflag_post&flag=1&pID=' . (int)$row['post_id'] . '&securityToken=' . $_SESSION['securityToken']); ?>">
                                         <?php echo zen_icon('status-red'); ?>
                                     </a>
                                 <?php } ?>

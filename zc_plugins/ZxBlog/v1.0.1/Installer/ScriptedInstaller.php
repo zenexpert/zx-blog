@@ -50,6 +50,27 @@ class ScriptedInstaller extends BaseScriptedInstaller
             );
         }
 
+        $this->deleteConfigurationKeys([
+            'ZX_BLOG_STATUS',
+            'ZX_BLOG_POSTS_PER_PAGE',
+            'ZX_BLOG_RECENT_SIDEBOX_LIMIT',
+            'ZX_BLOG_TAGS_SIDEBOX_LIMIT',
+            'ZX_BLOG_SHOW_READING_TIME',
+        ]);
+
+        $group = $this->getConfigurationGroupDetails($this->configGroupTitle);
+        if (is_array($group)) {
+            $cgi = (int)$group['configuration_group_id'];
+            $remaining = $this->executeInstallerSelectQuery(
+                "SELECT configuration_id FROM " . TABLE_CONFIGURATION . "
+                 WHERE configuration_group_id = " . $cgi . "
+                 LIMIT 1"
+            );
+            if ($remaining !== false && $remaining->EOF) {
+                $this->deleteConfigurationGroup($cgi, false);
+            }
+        }
+
         return true;
     }
 

@@ -17,12 +17,16 @@ class ZxBlogWordpressImporter
     private bool $importDrafts = true;
     private bool $stripGutenberg = true;
     private int $targetLanguageId = 0;
+    private string $dbHost = '';
+    private string $dbName = '';
+    private string $dbUser = '';
+    private string $dbPass = '';
 
     public function __construct(
-        private readonly string $dbHost,
-        private readonly string $dbName,
-        private readonly string $dbUser,
-        private readonly string $dbPass,
+        string $dbHost,
+        string $dbName,
+        string $dbUser,
+        string $dbPass,
         string $tablePrefix = 'wp_',
         string $wpFsPath = '',
         bool $copyMedia = true,
@@ -31,6 +35,11 @@ class ZxBlogWordpressImporter
         bool $stripGutenberg = true,
         int $targetLanguageId = 0
     ) {
+        $this->dbHost = $dbHost;
+        $this->dbName = $dbName;
+        $this->dbUser = $dbUser;
+        $this->dbPass = $dbPass;
+
         $cleanPrefix = preg_replace('/[^a-zA-Z0-9_]/', '', $tablePrefix) ?? 'wp_';
         $this->prefix = $cleanPrefix !== '' ? $cleanPrefix : 'wp_';
 
@@ -280,6 +289,10 @@ class ZxBlogWordpressImporter
         string $explicitRemoteUrl = ''
     ): string {
         $cleanRel = ltrim(str_replace('\\', '/', $wpRelativeUploadPath), '/');
+        if (!$this->isAllowedImageRelativePath($cleanRel)) {
+            return '';
+        }
+
         $filename = basename($cleanRel);
 
         if (preg_match('#^(\d{4})/(\d{2})/(.+)$#', $cleanRel, $m)) {
@@ -325,6 +338,15 @@ class ZxBlogWordpressImporter
         }
 
         return '';
+    }
+
+    private function isAllowedImageRelativePath(string $relativePath): bool
+    {
+        if ($relativePath === '' || strpos($relativePath, "\0") !== false || strpos($relativePath, '..') !== false) {
+            return false;
+        }
+        $ext = strtolower(pathinfo($relativePath, PATHINFO_EXTENSION));
+        return in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif'], true);
     }
 
     private function rewriteAndCopyInlineImages(string $content, string $postDate, array &$stats): string
@@ -613,9 +635,10 @@ class ZxBlogWordpressImporter
         $avatarAttachmentId = (int)$this->getUserMetaValue($wpUserId, $this->prefix . 'user_avatar');
         if ($avatarAttachmentId > 0 && $this->copyMedia) {
             $attachedFile = $this->getPostMetaValue($avatarAttachmentId, '_wp_attached_file');
-            if ($attachedFile !== '') {
-                $cleanRel = ltrim(str_replace('\\', '/', $attachedFile), '/');
+            $cleanRel = ltrim(str_replace('\\', '/', $attachedFile), '/');
+            if ($this->isAllowedImageRelativePath($cleanRel)) {
                 $filename = 'wp-avatar-' . $wpUserId . '-' . basename($cleanRel);
+                $filename = preg_replace('/[^a-zA-Z0-9._-]/', '-', $filename) ?? $filename;
                 $destFile = $destDir . $filename;
 
                 if ($this->wpUploadsFsPath !== '') {
