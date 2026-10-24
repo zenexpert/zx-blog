@@ -1,0 +1,13 @@
+ZX Blog
+
+v1.0.1
+ - PHP 8.0. - The WordPress importer constructor no longer uses readonly promoted properties, so Extras > ZX Blog WordPress Import no longer fatal-errors on PHP 8.0.
+- wp_fs_path. Replaced the nonexistent FILE_PATH_OR_URL_REGEX sanitizer with a custom ZX_BLOG_FS_PATH rule. Core's FILE_PATH_OR_URL type never calls its filter. The custom rule uses the same character class, keeps spaces and &, and marks the field sanitized.
+- Ampersands. category_name, post_tags, author_name, and author_bio now use PRODUCT_NAME_DEEP_REGEX, same as post_title. "News & Notes" stays "News & Notes" instead of News &amp; Notes, and the slug is news-notes rather than news-amp-notes.
+- Stylesheet. Renamed stylesheet_zx_blog.css to zx_blog.css. An observer on NOTIFY_HTML_HEAD_END links it with linkCatalogStylesheet() while the blog is enabled, including for sideboxes. Zen Cart 2.1–2.3 do not auto-link plugin CSS. Zen Cart 3 only auto-links stylesheet*.css, so this name is not loaded twice.
+- Uninstall. Removes the five ZX_BLOG_* configuration rows and the empty "ZX Blog Configuration" group. Tables and images/blog/ stay. README and readme.html say so.
+- Post status. setflag_post now requires securityToken on the GET link.
+- Importer files. _wp_attached_file is copied or downloaded only for jpg, jpeg, png, gif, webp, and avif. Paths containing .. or a NUL byte are rejected. The same check applies to author avatars.
+
+v1.0.0
+- Initial encapsulated observer-based release

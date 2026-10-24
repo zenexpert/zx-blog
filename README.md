@@ -25,10 +25,10 @@ ZX Blog is a full-featured, multi-language content management and blogging suite
 - [License](#license)
 
 ## Installation
-ZX Blog is built as a strict **Encapsulated Plugin** for Zen Cart 2.1.0+. All admin pages, storefront controllers, sideboxes, language arrays, and installers live inside `zc_plugins/ZxBlog/v1.0.0/`, requiring zero core file overwrites.
+ZX Blog is built as a strict **Encapsulated Plugin** for Zen Cart 2.1.0+. All admin pages, storefront controllers, sideboxes, language arrays, and installers live inside `zc_plugins/ZxBlog/v1.0.1/`, requiring zero core file overwrites.
 
 1. Backup your Zen Cart database and store files.
-2. Upload the `ZxBlog` directory into your store's `zc_plugins/` directory so that the path matches `zc_plugins/ZxBlog/v1.0.0/manifest.php`.
+2. Upload the `ZxBlog` directory into your store's `zc_plugins/` directory so that the path matches `zc_plugins/ZxBlog/v1.0.1/manifest.php`.
 3. Log into your Zen Cart Admin panel and navigate to **Modules > Plugin Manager**.
 4. Locate **ZX Blog** in the list and click **Install**. The scripted installer will automatically:
     *   Create the image directories `images/blog/`, `images/blog/assets/`, and the current month directory `images/blog/YYYYMM/`.
@@ -115,7 +115,7 @@ Navigate to **Extras > ZX Blog WordPress Import** (`admin/blog_wp_import.php`) t
 To uninstall the plugin, navigate to **Modules > Plugin Manager**, select **ZX Blog**, and click **Uninstall**. The uninstaller deregisters the Admin menu pages and removes the sidebox entries from `layout_boxes` while leaving your blog database tables and uploaded images in `images/blog/` intact so you never accidentally lose articles during a plugin upgrade.
 
 ## Common Issues
-*   **Sideboxes listed under "Missing Boxes" in Layout Boxes Controller:** If you installed an earlier build where `plugin_details` was not populated in `layout_boxes`, click **Delete** next to the three blog sideboxes in **Tools > Layout Boxes Controller**. Zen Cart's `SideboxFinder` will immediately re-register them with `plugin_details = 'ZxBlog/v1.0.0'`.
+*   **Sideboxes listed under "Missing Boxes" in Layout Boxes Controller:** If you installed an earlier build where `plugin_details` was not populated in `layout_boxes`, click **Delete** next to the three blog sideboxes in **Tools > Layout Boxes Controller**. Zen Cart's `SideboxFinder` will immediately re-register them with `plugin_details = 'ZxBlog/v1.0.1'`.
 *   **HTML Editor (CKEditor / TinyMCE) not showing on Post Content:** Use the **Text Editor** dropdown in the top-right corner of **Tools > ZX Blog Manager** (or under **Configuration > My Store > HTML Editor**) to switch from *Plain Text* to your installed editor.
 *   **Image uploads failing:** Verify that your web server has write permissions (`0755` or `0775`) on the `images/` directory so PHP can create `images/blog/assets/` and monthly `images/blog/YYYYMM/` subdirectories.
 
